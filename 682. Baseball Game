@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int calPoints(vector<string>& nums) {
+        vector<int> hold;
+
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] != "C" && nums[i] != "D" && nums[i] != "+") {
+                hold.push_back(stoi(nums[i]));
+            } else if (nums[i] == "C") {
+                hold.pop_back();
+            } else if (nums[i] == "D") {
+                int temp = 2 * (hold[hold.size() - 1]);
+                hold.push_back(temp);
+            } else if (nums[i] == "+") {
+                hold.push_back(hold[hold.size() - 1] + hold[hold.size() - 2]);
+            }
+        }
+        return accumulate(hold.begin(), hold.end(), 0);
+    }
+};
