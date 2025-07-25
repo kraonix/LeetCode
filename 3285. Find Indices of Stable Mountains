@@ -1,0 +1,16 @@
+class Solution {
+public:
+    vector<int> stableMountains(vector<int>& height, int threshold) {
+        int j = 0;
+        vector<int> ans;
+
+        for(int i = 1; i < height.size(); i++){
+            if(height[j] > threshold){
+                ans.push_back(i);
+            }
+            j++;
+        }
+
+        return ans;
+    }
+};
