@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int numJewelsInStones(string jewels, string stones) {
+        int count = 0;
+
+        string s = "";
+        string temp = "";
+        for(int i = 0; i < jewels.size(); i++){
+            s = jewels[i];
+            for(int j = 0; j < stones.size(); j++){
+                temp = stones[j];
+                if(s == temp){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+};
