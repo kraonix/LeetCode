@@ -1,0 +1,10 @@
+class Solution {
+public:
+    string removeOccurrences(string s, string part) {
+        size_t pos = s.find(part);
+        if(pos == string::npos) return s;
+
+        s.replace(pos, part.length(), "");
+        return removeOccurrences(s, part);
+    }
+};
