@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int minSwaps(string s) {
+        int left = 0;
+        int right = s.size() - 1;
+        int count = 0;
+        int balance = 0;
+
+        for (char ch : s) {
+            if (ch == '[') balance++;
+            else balance--;
+
+            if (balance < 0) {
+                count++;
+                balance += 2;
+            }
+        }
+
+        return count;
+    }
+};
