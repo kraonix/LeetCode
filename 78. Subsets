@@ -1,0 +1,23 @@
+class Solution {
+public:
+    void allSub(vector<int>& nums, vector<int> &ans, int i, vector<vector<int>> &all) {
+        if(i == nums.size()){
+            all.push_back({ans}); // sarre ans wale all mai daal do
+            return;
+        }
+
+        ans.push_back(nums[i]); 
+        allSub(nums, ans, i+1, all); // include ke liye
+
+        ans.pop_back();
+        allSub(nums, ans, i+1, all); // exclude ke liye
+    }
+
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> all; // main answer ke liye
+        vector<int> ans;
+        allSub(nums, ans, 0, all);
+
+        return all;
+    }
+};
