@@ -1,0 +1,22 @@
+class Solution {
+public:
+    void getAll(vector<int> &nums, int i, vector<vector<int>>& all) {
+        if (i == nums.size()) {
+            all.push_back({nums});
+            return;
+        }
+
+        for(int idx = i; idx < nums.size(); idx++){
+            swap(nums[idx], nums[i]);
+            getAll(nums, i+1, all);
+            swap(nums[idx], nums[i]);
+        }
+    }
+
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> all;
+
+        getAll(nums, 0, all);
+        return all;
+    }
+};
