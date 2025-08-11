@@ -1,0 +1,29 @@
+class Solution {
+public:
+    void getAll(vector<int>& nums, int i, vector<int>& ans,
+                vector<vector<int>>& all) {
+        if (i == nums.size()) {
+            all.push_back({ans});
+            return;
+        }
+
+        ans.push_back(nums[i]);
+        getAll(nums, i + 1, ans, all);
+
+        ans.pop_back();
+        int index = i+1;
+        while(index < nums.size() && nums[index] == nums[index - 1]){
+            index++;
+        }
+        getAll(nums, index, ans, all);
+    }
+
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        vector<int> ans;
+        vector<vector<int>> all;
+        sort(nums.begin(), nums.end());
+        getAll(nums, 0, ans, all);
+
+        return all;
+    }
+};
