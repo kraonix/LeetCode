@@ -1,0 +1,18 @@
+class Solution {
+public:
+    bool sol(int n, long long a){
+        if(n == a){
+            return true;
+        }
+        if(a > n){
+            return false;
+        }
+
+        a = a*3;
+        return sol(n, a);
+    }
+
+    bool isPowerOfThree(int n) {
+        return sol(n, 1);
+    }
+};
