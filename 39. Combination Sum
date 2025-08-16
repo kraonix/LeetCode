@@ -1,0 +1,29 @@
+class Solution {
+public:
+    void dekhlo(vector<int>& nums, int target, int i, vector<int> &ans, vector<vector<int>> &sol){
+        if(i == nums.size()){
+            return;
+        }
+        
+        if(accumulate(ans.begin(), ans.end(), 0) == target){
+            sol.push_back({ans});
+            return;
+        }else if(accumulate(ans.begin(), ans.end(), 0) > target){
+            return;
+        }
+
+        ans.push_back(nums[i]);
+        dekhlo(nums, target, i, ans, sol);
+
+        ans.pop_back();
+        dekhlo(nums, target, i+1, ans, sol);
+    }
+
+    vector<vector<int>> combinationSum(vector<int>& nums, int target) {
+        vector<int> ans;
+        vector<vector<int>> sol;
+
+        dekhlo(nums, target, 0, ans, sol);
+        return sol;
+    }
+};
