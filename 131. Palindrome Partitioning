@@ -1,0 +1,32 @@
+class Solution {
+public:
+    bool isPalin(string s){
+        string a = s;
+        reverse(a.begin(), a.end());
+        return a == s;
+    }
+
+    void palin(string s, vector<string> &ans, vector<vector<string>> &sol){
+        if(s.size() == 0){
+            sol.push_back(ans);
+            return;
+        }
+
+        for(int i = 0; i < s.size(); i ++){
+            string part = s.substr(0, i+1);
+            if(isPalin(part)){
+                ans.push_back(part);
+                palin(s.substr(i+1, s.size()), ans, sol);
+                ans.pop_back();
+            }
+        }
+    }
+
+    vector<vector<string>> partition(string s) {
+       vector<string> ans;
+       vector<vector<string>> sol;
+
+       palin(s, ans, sol);
+       return sol; 
+    }
+};
