@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if(s.size() != t.size()){
+            return false;
+        }
+        map<char, int> a, b;
+
+        for(auto var: s){
+            a[var]++;
+        }
+
+        for(auto var: t){
+            b[var]++;
+        }
+
+        return a == b;
+    }
+};
