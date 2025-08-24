@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool partitionArray(vector<int>& nums, int k) {
+        if(nums.size() % k != 0){
+            return false;
+        }
+
+        unordered_map<int, int> freq;
+        for(auto a : nums){
+            freq[a]++;
+        }
+
+        int a = nums.size()/k;
+        int maxA = 0;
+        for(auto b: freq){
+            maxA = max(maxA, b.second);
+        }
+
+        return maxA <= a;
+
+        
+    }
+};
