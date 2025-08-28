@@ -1,0 +1,25 @@
+class Solution {
+public:
+    string decodeMessage(string key, string message) {
+        string a = "abcdefghijklmnopqrstuvwxyz";
+        map<char, char> b;
+       
+        int i = 0;
+        for (char c : key) {
+            if (c != ' ' && b.find(c) == b.end()) {
+                b[c] = a[i++];
+            }
+        }
+
+        string s = "";
+        for (char c : message) {
+            if (c == ' ') {
+                s += ' ';
+            } else {
+                s += b[c];
+            }
+        }
+
+        return s;
+    }
+};
