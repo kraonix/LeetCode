@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<int> recoverOrder(vector<int>& order, vector<int>& friends) {
+        vector<int> ans;
+        vector<pair<int, int>> temp;
+
+        for(int i = 0; i < friends.size(); i++){
+            for(int j = 0; j < order.size(); j++){
+                if(friends[i] == order[j]){
+                    temp.push_back({j, order[j]});
+                }
+            }
+        }
+
+        sort(temp.begin(), temp.end());
+
+        for(auto i : temp){
+            ans.push_back(i.second);
+        }
+
+        return ans;
+    }
+};
