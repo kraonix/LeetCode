@@ -1,0 +1,26 @@
+class Solution {
+public:
+    void dfs(TreeNode* root, int depth, int &maxDepth, int &sum) {
+        if (!root) return;
+
+        if (!root->left && !root->right) {
+            if (depth > maxDepth) {
+                maxDepth = depth;  
+                sum = root->val;    
+            } else if (depth == maxDepth) {
+                sum += root->val;   
+            }
+            return;
+        }
+
+        dfs(root->left, depth + 1, maxDepth, sum);
+        dfs(root->right, depth + 1, maxDepth, sum);
+    }
+
+    int deepestLeavesSum(TreeNode* root) {
+        int sum = 0;
+        int maxDepth = 0;
+        dfs(root, 0, maxDepth, sum);
+        return sum;
+    }
+};
