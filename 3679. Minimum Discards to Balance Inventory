@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int minArrivalsToDiscard(vector<int>& arrivals, int w, int m) {
+        unordered_map<int, queue<int>> kept;
+        int a = 0;
+
+        for(int i = 0; i < arrivals.size(); i++){
+            int b = i + 1;
+            int item = arrivals[i];
+
+            queue<int>& hist = kept[item];
+
+            int win = b - w + 1;
+
+            while(!hist.empty() && hist.front() < win){
+                hist.pop();
+            }
+
+            if(hist.size() >= m){
+                a++;
+            }else{
+                hist.push(b);
+            }
+        }
+        return a;
+    }
+};
