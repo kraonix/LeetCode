@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int maxXorSubsequences(vector<int>& nums) {
+        vector<int> a;
+        for(int i: nums){
+            for(int j: a){
+                i = min(i, i^j);
+            }
+
+            if(i > 0){
+                a.push_back(i);
+                sort(a.rbegin(), a.rend());
+            }
+        }
+
+        int ans = 0;
+        for(int i : a){
+            ans = max(ans, ans^i);
+        }
+
+        return ans;
+    }
+};
