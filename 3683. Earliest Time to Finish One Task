@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int earliestTime(vector<vector<int>>& tasks) {
+        int sum = INT_MAX;
+
+        for(const auto task: tasks){
+            int temp = task[0];
+            int temp1 = task[1];
+            int temp3 = temp + temp1;
+            
+
+            sum = min(sum, temp3);
+        }
+        return sum;
+    }
+};
