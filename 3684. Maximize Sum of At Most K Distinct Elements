@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<int> maxKDistinct(vector<int>& arr, int k) {
+        unordered_set<int> s(arr.begin(), arr.end());
+
+        vector<int> nums;
+        for(int i: s){
+            nums.push_back(i);
+        }
+        
+        sort(nums.begin(), nums.end(), greater<>());
+
+        vector<int> sum;
+        for(int i = 0; i < nums.size() && i < k; i++){
+            sum.push_back(nums[i]);
+        }
+
+        return sum;
+    }
+};
