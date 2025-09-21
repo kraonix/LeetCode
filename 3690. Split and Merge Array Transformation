@@ -1,0 +1,43 @@
+class Solution {
+public:
+    int minSplitMerge(vector<int>& nums1, vector<int>& nums2) {
+        if(nums1 == nums2) return 0;
+
+        int n = nums1.size();
+
+        queue<pair<vector<int>, int>> q;
+
+        q.push({nums1, 0});
+        set<vector<int>> visited;
+
+        visited.insert(nums1);
+
+        while(!q.empty()){
+            vector<int> curr = q.front().first;
+            int dist = q.front().second;
+            q.pop();
+
+            for(int left = 0; left < n; ++left){
+                for(int right = left; right < n; ++right){
+                    vector<int> sub(curr.begin() + left, curr.begin() + right + 1);
+
+                    vector<int> rem(curr.begin(), curr.begin() + left);
+                    rem.insert(rem.end(), curr.begin() + right + 1, curr.end());
+
+                    for(int p = 0; p <= rem.size(); p++){
+                        vector<int> temp = rem;
+                        temp.insert(temp.begin() + p, sub.begin(), sub.end());
+
+                        if(temp == nums2) return dist + 1;
+
+                        if(visited.find(temp) == visited.end()){
+                            visited.insert(temp);
+                            q.push({temp, dist+1});
+                        }
+                    }
+                }
+            }
+        }
+        return -1;
+    }
+};
