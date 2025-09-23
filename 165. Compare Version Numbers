@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int compareVersion(string version1, string version2) {
+        vector<int> temp1, temp2;
+        string s = "";
+
+        for (int i = 0; i < version1.size(); i++) {
+            if (version1[i] != '.') {
+                s.push_back(version1[i]);
+            } else {
+                temp1.push_back(stoi(s));
+                s = "";
+            }
+        }
+        if (!s.empty()) temp1.push_back(stoi(s));
+
+        s = "";
+        for (int i = 0; i < version2.size(); i++) {
+            if (version2[i] != '.') {
+                s.push_back(version2[i]);
+            } else {
+                temp2.push_back(stoi(s));
+                s = "";
+            }
+        }
+        if (!s.empty()) temp2.push_back(stoi(s));
+
+        int n = max(temp1.size(), temp2.size());
+        for (int i = 0; i < n; i++) {
+            int v1 = i < temp1.size() ? temp1[i] : 0;
+            int v2 = i < temp2.size() ? temp2[i] : 0;
+            if (v1 > v2) return 1;
+            if (v1 < v2) return -1;
+        }
+
+        return 0;
+    }
+};
