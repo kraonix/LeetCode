@@ -1,0 +1,36 @@
+class Solution {
+public:
+    bool hello(string s, string pattern) {
+        if (s.size() != pattern.size()) return false;
+
+        unordered_map<char, char> p2s;
+        unordered_map<char, char> s2p;
+
+        for (int i = 0; i < s.size(); i++) {
+            char p = pattern[i];
+            char w = s[i];
+
+            if (p2s.count(p) && p2s[p] != w)
+                return false;
+            if (s2p.count(w) && s2p[w] != p)
+                return false;
+
+            p2s[p] = w;
+            s2p[w] = p;
+        }
+        return true;
+    }
+
+    vector<string> findAndReplacePattern(vector<string>& words,
+                                         string pattern) {
+        vector<string> res;
+
+        for (int i = 0; i < words.size(); i++) {
+            if (hello(words[i], pattern)) {
+                res.push_back(words[i]);
+            }
+        }
+
+        return res;
+    }
+};
